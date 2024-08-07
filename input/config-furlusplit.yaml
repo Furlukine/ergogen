@@ -1,0 +1,197 @@
+units:
+  # Proxy Spacing Variables
+  kx: u
+  ky: u
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+points:
+  zones:
+    matrix:
+      anchor:
+        shift: [100, -100]
+      rotate: 11
+      columns:
+        outter:
+          #rows.number.skip: true
+          #rows.bottom.skip: true
+          key.column_net: col_outter
+        pinky:
+          key.column_net: col_pinky
+        ring:
+          key.splay: -8
+          key.stagger: 10
+          key.origin: [0, -9]
+          key.column_net: col_ring
+        middle:
+          key.stagger: 2
+          key.column_net: col_middle
+        index:
+          key.splay: -3
+          key.stagger: -6
+          key.origin: [0, -5]
+          key.column_net: col_index
+        inner:
+          key.column_net: col_inner
+      rows:
+        bottom:
+          row_net: row_bottom
+        home:
+          row_net: row_home
+        top:
+          row_net: row_top
+        number:
+          row_net: row_number
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-kx, -20.5]
+      columns:
+        near:
+          key.splay: 6
+          key.column_net: col_middle
+        home:
+          key.spread: 19
+          key.splay: -30
+          key.origin: [-9.5, -9]
+          key.column_net: col_index
+        far:
+          key.spread: 19
+          key.splay: -30
+          key.origin: [-9.5, -9]
+          key.column_net: col_inner
+      rows:
+        thumb:
+          row_net: col_thumb
+  #mirror: 
+  #  ref: matrix_inner_number
+  #  distance: 2px
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [px, py]
+  holes:
+    - what: rectangle
+      where: true
+      size: [14, 14]
+  board:
+    - what: polygon
+      fillet: 1
+      points:
+        - ref: matrix_pinky_number
+          shift: [-0.5px,0.5py]
+        - ref: matrix_pinky_number
+          shift: [0.84px,0.5py]
+        - ref: matrix_ring_number
+          shift: [-0.5px,0.5py]
+        - ref: matrix_ring_number
+          shift: [0.4px,0.5py]
+        - ref: matrix_middle_number
+          shift: [-0.5px,0.5py]
+        - ref: matrix_middle_number
+          shift: [0.5px,0.5py]
+        - ref: matrix_index_number
+          shift: [-0.58px,0.5py]
+        - ref: matrix_index_number
+          shift: [0.5px,0.5py]
+        - ref: matrix_inner_number
+          shift: [-0.4px,0.5py]
+        - ref: matrix_inner_number
+          shift: [0.5px,0.5py]
+        - ref: matrix_inner_home
+          shift: [0.5px,0.45py]
+        - ref: matrix_inner_home
+          shift: [1.6px,0.14py]
+        - ref: matrix_inner_bottom
+          shift: [1.17px,-0.5py]
+        - ref: thumbfan_far_thumb
+          shift: [-0.45px,0.5py]
+        - ref: thumbfan_far_thumb
+          shift: [0.5px,0.5py]
+        - ref: thumbfan_far_thumb
+          shift: [0.5px,-0.5py]
+        - ref: thumbfan_home_thumb
+          shift: [0.44px,-0.5py]
+        - ref: thumbfan_near_thumb
+          shift: [0.44px,-0.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-0.5px,-0.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-0.5px,0.6py]
+        - ref: matrix_ring_bottom
+          shift: [0.5px,-0.5py]
+        - ref: matrix_ring_bottom
+          shift: [-0.4px,-0.5py]
+        - ref: matrix_pinky_bottom
+          shift: [0.5px,-0.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_outter_bottom
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_outter_number
+          shift: [-0.5px,0.5py]
+        - ref: matrix_outter_number
+          shift: [0.4px,0.5py]
+pcbs:
+  FurluSplit:
+    outlines:
+      - outline: board
+        layer: Edge.Cuts
+    footprints:
+      switches:
+        where: true
+        what: switch_mx
+        params:
+          reversible: true
+          hotswap: true
+          include_keycap: true
+          include_corner_marks: true
+          from: "{{colrow}}"
+          to: "{{column_net}}"
+          #from: "{{column_net}}"
+          #to: "{{colrow}}"
+      diodes:
+        where: true
+        what: diode_tht_sod123
+        params:
+          reversible: true
+          include_tht: true
+          #from: "{{column_net}}"
+          #to: "{{colrow}}"
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0,-4.5]
+          rotate: 180
+      mcu:
+        what: rp2040zero_reversible
+        #params:
+        #  GP8: col_outter
+        #  GP7: col_pinky
+        #  GP6: col_ring
+        #  GP5: col_middle
+        #  GP4: col_index
+        #  GP3: col_inner
+        #  GP14: row_thumb
+        #  GP15: row_bottom
+        #  GP26: row_home
+        #  GP27: row_top
+        #  GP28: row_number
+        where:
+          ref: matrix_inner_home
+          #ref: matrix_pinky_number
+          rotate: -15.7
+          shift: [6.8,-15.2]
+      ttrs :
+        what: trrs
+        params:
+          A: GP0
+          B: P5V
+          C: GND
+          D: GP1
+        where:
+          ref: matrix_inner_bottom
+          rotate: -105.7
+          shift : [23,-8]

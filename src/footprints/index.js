@@ -1,3 +1,6 @@
+const rp2040zero = require('./rp2040zero');
+const switch_mx = require('./switch_mx');
+
 module.exports = {
     alps: require('./alps'),
     button: require('./button'),
@@ -17,4 +20,8 @@ module.exports = {
     slider: require('./slider'),
     trrs: require('./trrs'),
     via: require('./via'),
+    rp2040zero: require('./rp2040zero'),
+    switch_mx: require('./switch_mx'),
+    diode_tht_sod123: require('./diode_tht_sod123'),
+    rp2040zero_reversible: require('.rp2040zero_reversible')
 }
