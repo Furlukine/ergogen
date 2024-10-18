@@ -1,0 +1,89 @@
+units:
+  # Proxy Spacing Variables
+  kx: u
+  ky: u
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+points:
+  zones:
+    matrix:
+      anchor:
+        shift: [100, -100]
+      rotate: 11
+      columns:
+        outter:
+          #rows.number.skip: true
+          #rows.bottom.skip: true
+          key.column_net: col_outter
+        pinky:
+          key.column_net: col_pinky
+        ring:
+          key.splay: -8
+          key.stagger: 10
+          key.origin: [0, -9]
+          key.column_net: col_ring
+        middle:
+          key.stagger: 2
+          key.column_net: col_middle
+        index:
+          key.splay: -3
+          key.stagger: -6
+          key.origin: [0, -5]
+          key.column_net: col_index
+        inner:
+          key.column_net: col_inner
+      rows:
+        bottom:
+          row_net: row_bottom
+        home:
+          row_net: row_home
+        top:
+          row_net: row_top
+        number:
+          row_net: row_number
+    arrows:
+      anchor:
+        ref: matrix_outter_bottom
+        shift: [-0,-kx]
+      columns :
+        droite:
+        bas:
+        gauche:
+      rows:
+        unique:
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-kx, -20.5]
+      columns:
+        near:
+          key.splay: 6
+          key.column_net: col_middle
+        home:
+          key.spread: 19
+          key.splay: -30
+          key.origin: [-9.5, -9]
+          key.column_net: col_index
+        far:
+          key.spread: 19
+          key.splay: -30
+          key.origin: [-9.5, -9]
+          key.column_net: col_inner
+      rows:
+        thumb:
+          row_net: col_thumb
+  rotate: -15
+  mirror: 
+    ref: matrix_inner_number
+    distance: 2px
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [px, py]
+  holes:
+    - what: rectangle
+      where: true
+      size: [14, 14]
