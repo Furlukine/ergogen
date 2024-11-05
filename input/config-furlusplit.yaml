@@ -28,7 +28,7 @@ points:
           key.column_net: col_middle
         index:
           key.splay: -3
-          key.stagger: -6
+          key.stagger: -8
           key.origin: [0, -5]
           key.column_net: col_index
         inner:
@@ -45,7 +45,7 @@ points:
     thumbfan:
       anchor:
         ref: matrix_inner_bottom
-        shift: [-kx, -20.5]
+        shift: [-kx+1, -20.5]
       columns:
         near:
           key.splay: 6
