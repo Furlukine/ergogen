@@ -23,5 +23,5 @@ module.exports = {
     rp2040zero: require('./rp2040zero'),
     switch_mx: require('./switch_mx'),
     diode_tht_sod123: require('./diode_tht_sod123'),
-    rp2040zero_reversible: require('.rp2040zero_reversible')
+    //rp2040zero_reversible: require('.rp2040zero_reversible')
 }
