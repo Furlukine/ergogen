@@ -1,0 +1,130 @@
+units:
+  # Proxy Spacing Variables
+  kx: u
+  ky: u
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+points:
+  zones:
+    matrix:
+      anchor:
+        shift: [100, -100]
+      columns:
+        outter:
+          #rows.number.skip: true
+          #rows.bottom.skip: true
+          key.column_net: col_outter
+        pinky:
+          key.column_net: col_pinky
+        arrow:
+          rows.function.skip: true
+          rows.number.skip: true
+          rows.top.skip: true
+          rows.home.skip: true
+          rows.bottom.skip: true
+          key.column_net: col_arrow
+        ring:
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.splay: -6
+          key.stagger: 12
+          key.origin: [0, 10.2u]
+          key.column_net: col_ring
+        middle:
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.splay: -3
+          key.stagger: 2
+          key.origin: [0, 0.5u]
+          key.column_net: col_middle
+        index:
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.splay: -5
+          key.stagger: -8
+          key.origin: [0, u]
+          key.column_net: col_index
+        inner:
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.column_net: col_inner
+      rows:
+        palm:
+        bottom:
+          row_net: row_bottom
+        home:
+          row_net: row_home
+        top:
+          row_net: row_top
+        number:
+          row_net: row_number
+        function:
+
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-kx+4, -20.5]
+      columns:
+        near:
+          key.splay: 6
+          key.column_net: col_middle
+        home:
+          key.spread: 19
+          key.splay: -30
+          key.origin: [-9.5, -9]
+          key.column_net: col_index
+        far:
+          key.spread: 19
+          key.splay: -30
+          key.origin: [-9.5, -9]
+          key.column_net: col_inner
+      rows:
+        thumb:
+          row_net: col_thumb
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [px, py]
+  holes:
+    - what: rectangle
+      where: true
+      size: [14, 14]
+  board:
+    - what: polygon
+      fillet: 1
+      points:
+        - ref: matrix_outter_function
+          shift: [-0.5px,0.5py]
+        - ref: matrix_pinky_function
+          shift: [0.5px,0.5py]
+        - ref: matrix_middle_number
+          shift: [-1.95px,0.5py]
+        - ref: matrix_middle_number
+          shift: [0.5px,0.5py]
+        - ref: matrix_index_number
+          shift: [-0.58px,0.5py]
+        - ref: matrix_index_number
+          shift: [0.5px,0.5py]
+        - ref: matrix_inner_number
+          shift: [-0.4px,0.5py]
+        - ref: matrix_inner_number
+          shift: [0.5px,0.5py]
+        - ref: thumbfan_far_thumb
+          shift: [0.5px,0.5py]
+        - ref: thumbfan_far_thumb
+          shift: [0.5px,-0.5py]
+        - ref: thumbfan_home_thumb
+          shift: [0.44px,-0.5py]
+        - ref: thumbfan_near_thumb
+          shift: [0.44px,-0.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_pinky_palm
+          shift: [0.5px,-0.5py]
+        - ref: matrix_pinky_palm
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_outter_palm
+          shift: [-0.5px,-0.5py]
