@@ -1,0 +1,252 @@
+units:
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx + 2
+  py: ky +2
+  #keycaps size
+
+  screwSize: 1.5
+points:
+  zones:
+    matrix:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        shift: [100, -100]
+      columns:
+        outter:
+          key.spread: ky
+          #rows.number.skip: true
+          #rows.bottom.skip: true
+          key.column_net: col_outter
+        pinky:
+          key.spread: ky
+          key.column_net: col_pinky
+        ring:
+          key.spread: ky
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.splay: -14
+          key.stagger: 12
+          key.origin: [0, -7.5]
+          key.column_net: col_ring
+        middle:
+          key.spread: ky
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.splay: -2
+          key.stagger: 6
+          key.origin: [0, -9]
+          key.column_net: col_middle
+        index:
+          key.spread: ky
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.splay: -6
+          key.stagger: -8
+          key.origin: [0, -2]
+          key.column_net: col_index
+        inner:
+          key.spread: ky
+          rows.function.skip: true
+          rows.palm.skip: true
+          key.stagger: -4
+          key.column_net: col_inner
+      rows:
+        bottom:
+          spread: kx
+          row_net: row_bottom
+        home:
+          spread: kx
+          row_net: row_home
+        top:
+          spread: kx
+          row_net: row_top
+        number:
+          spread: kx
+          row_net: row_number
+
+    thumbfan:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-kx+1, -22]
+      columns:
+        near:
+          key.splay: 6
+          key.column_net: col_middle
+        home:
+          key.spread: 19
+          key.splay: -20
+          key.origin: [-9.5, -9]
+          key.column_net: col_index
+        far:
+          key.spread: 19
+          key.splay: -20
+          key.origin: [-9.5, -9]
+          key.column_net: col_inner
+      rows:
+        thumb:
+          row_net: col_thumb
+  mirror:
+    ref: matrix_inner_number
+    distance: 2.3px
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  keys:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [kx-0.5, ky-0.5]
+  keycaps:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  board_base:
+    - what: polygon
+      operation: stack
+      points:
+      #left
+        - ref: matrix_pinky_bottom
+          shift: [.5px, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_number
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_number
+          shift: [.5px+11.7, .5py]
+        - ref: matrix_ring_number
+          shift: [-.5px, .5py]
+        - ref: matrix_ring_number
+          shift: [.5px+0.2, .5py]
+        - ref: matrix_middle_number
+          shift: [-.5px, .5py]
+        - ref: matrix_middle_number
+          shift: [.5px, .5py]
+        - ref: matrix_middle_number
+          shift: [.5px, .5py-6.8]
+      #middle
+        - ref: matrix_inner_number
+          shift: [.5px, .5py+4]
+        - ref: mirror_matrix_inner_number
+          shift: [.5px, .5py+4]
+      #right
+        - ref: mirror_matrix_middle_number
+          shift: [.5px, .5py-6.8]
+        - ref: mirror_matrix_middle_number
+          shift: [.5px, .5py]
+        - ref: mirror_matrix_middle_number
+          shift: [-.5px, .5py]
+        - ref: mirror_matrix_ring_number
+          shift: [.5px+0.2, .5py]
+        - ref: mirror_matrix_ring_number
+          shift: [-.5px, .5py]
+        - ref: mirror_matrix_pinky_number
+          shift: [.5px+11.7, .5py]
+        - ref: mirror_matrix_outter_number
+          shift: [-.5px, .5py]
+        - ref: mirror_matrix_outter_bottom
+          shift: [-.5px, -.5py]
+        - ref: mirror_matrix_pinky_bottom
+          shift: [.5px, -.5py]
+      #bottom part
+        - ref: mirror_matrix_pinky_bottom
+          shift: [.5px, .5py-5]
+        - ref: mirror_thumbfan_near_thumb
+          shift: [-.5px, .5py+9]
+        - ref: mirror_thumbfan_near_thumb
+          shift: [-.5px, -.5py]
+        - ref: mirror_thumbfan_near_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: mirror_thumbfan_home_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: mirror_thumbfan_far_thumb
+          shift: [.5px, -.5py]
+        - ref: mirror_thumbfan_far_thumb
+          shift: [.5px, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px, -.5py]
+        - ref: thumbfan_home_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-.5px, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-.5px, .5py+9]
+        - ref: matrix_pinky_bottom
+          shift: [.5px, .5py-5]
+      expand: 2
+      fillet: 1.5
+
+  top_plate :
+    - name : keycaps
+    - operation : stack
+      name : board_base
+
+  wrists :
+    - what : polygon
+      operation : stack
+      points :
+        - ref: matrix_outter_number
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [-.5px+10, -.5py-70]
+        - ref: thumbfan_near_thumb
+          shift: [.5px+5, -.5py-60]  
+        - ref: thumbfan_far_thumb
+          shift: [.5px, -.5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px, .5py]
+        - ref: mirror_thumbfan_far_thumb
+          shift: [.5px, .5py]
+        - ref: mirror_thumbfan_far_thumb
+          shift: [.5px, -.5py]
+        - ref: mirror_thumbfan_near_thumb
+          shift: [.5px+5, -.5py-60]  
+        - ref: mirror_matrix_outter_bottom
+          shift: [-.5px+10, -.5py-70]
+        - ref: mirror_matrix_outter_bottom
+          shift: [-.5px, -.5py]
+        - ref: mirror_matrix_outter_number
+          shift: [-.5px, -.5py]
+      expand: 2
+
+  bottom_base :
+    - name : board_base
+    - operation : add
+      name : wrists
+      expand: 2
+      fillet: 0.1
+
+  woodspacer :
+    - name : board_base
+      expand: -2
+    - operation : stack
+      name : bottom_base
+
+  woodtop :
+    - name : bottom_base
+    - operation : subtract
+      name : board_base
+
+  keeb :
+    - name : keys
+    - operation : stack
+      name : top_plate
+    - operation : stack
+      name : bottom_base
+    - operation : stack
+      name : woodspacer
+
+
+
