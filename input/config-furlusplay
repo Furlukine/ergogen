@@ -1,0 +1,338 @@
+meta:
+  engine: 4.1.0
+units:
+  cx : 18
+  cy : 17
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx + 2
+  py: ky +2
+  #keycaps size
+  keycap_1u_w: 17.5
+  keycap_1u_h: 16.6
+  keycap_15u_w: 27
+  keycap_15u_h: 16.6
+
+  screwSize: 1.5
+  screwsupport: 5
+
+
+
+points:
+  zones:
+    matrix:
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        shift: [100, -100]
+      columns:
+        outter:
+          key.spread: ky
+          key.column_net: P2
+          # rows.number.skip: true
+        pinky:
+          key.spread: ky
+          key.column_net: P3
+          # key.stagger: -5
+        ring:
+          key.spread: ky
+          key.splay: -9
+          key.stagger: 9
+          key.origin: [0, -7.5]
+          key.column_net: P4
+        middle:
+          key.spread: ky
+          key.splay: -1
+          key.stagger: 5
+          key.origin: [0, -9]
+          key.column_net: P5
+        index:
+          key.spread: ky
+          key.splay: -7
+          key.stagger: -8
+          key.origin: [0, -1]
+          key.column_net: P6
+        inner:
+          key.spread: ky
+          key.stagger: -4
+          key.column_net: P7
+      rows:
+        bottom:
+          spread: kx
+          row_net: P21
+        home:
+          spread: kx
+          row_net: P20
+        top:
+          spread: kx
+          row_net: P19
+        number:
+          spread: kx
+          row_net: P18
+    thumbfan:
+      anchor:
+        ref: matrix_ring_bottom
+        shift: [-kx+40, -19]
+      columns:
+        near:
+          key.splay: -10
+          key.origin: [-40, -80]
+          key.column_net: P5
+        home:
+          key.spread: 19
+          key.splay: -8
+          key.origin: [-9.5, -9]
+          key.column_net: P6
+        far:
+          key.spread: 19
+          key.splay: -3
+          key.origin: [-94, 6]
+          key.width: keycap_15u_w
+          key.height: keycap_15u_h
+          key.rotate: -90
+          key.column_net: P7
+      rows:
+        thumb:
+          row_net: P15
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  keys:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [kx-0.5, ky-0.5]
+  keycaps:
+    - what: rectangle
+      where: true
+      size: [keycap_1u_w, keycap_1u_h]
+  _key_slot_negative:
+    - what: rectangle
+      where: true
+      size: [13.8, 13.8]
+
+  _all :
+    - what: polygon
+      operation: stack
+      points:
+        #- ref: matrix_pinky_bottom
+        #  shift: [.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [.5px+34, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [.5px-2, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_number
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_number
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_number
+          shift: [.5px+7, .5py]
+        - ref: matrix_ring_number
+          shift: [-.5px, .5py]
+        - ref: matrix_ring_number
+          shift: [.5px-1, .5py]
+        - ref: matrix_middle_number
+          shift: [-.5px, .5py]
+        - ref: matrix_middle_number
+          shift: [.5px, .5py]
+        - ref: matrix_middle_number
+          shift: [.5px, .5py-6.8]
+      #middle
+        - ref: matrix_inner_number
+          shift: [.5px+21, .5py+4]
+        - ref: matrix_inner_number
+          shift: [.5px+34.12, -.5py-20]
+
+
+        - ref: thumbfan_far_thumb
+          shift: [-.5px-5, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px+4, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px+4, -.5py]
+
+        - ref: thumbfan_home_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-.5px, -.5py]
+
+  _pcbOutline :
+    - what: polygon
+      operation: stack
+      points:
+        #- ref: matrix_pinky_bottom
+        #  shift: [.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [.5px+34, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [.5px-2, -.5py]
+        - ref: matrix_outter_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_outter_number
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_number
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_number
+          shift: [.5px+7, .5py]
+        - ref: matrix_ring_number
+          shift: [-.5px, .5py]
+        - ref: matrix_ring_number
+          shift: [.5px-1, .5py]
+        - ref: matrix_middle_number
+          shift: [-.5px, .5py]
+        - ref: matrix_middle_number
+          shift: [.5px, .5py]
+        - ref: matrix_middle_number
+          shift: [.5px, .5py-6.8]
+      #middle
+        - ref: matrix_inner_number
+          shift: [.5px+21, .5py+4]
+        - ref: matrix_inner_number
+          shift: [.5px+21, -.5py-20]
+        - ref: matrix_inner_number
+          shift: [.5px+4, -.5py-20]
+
+      #test impression 3D
+        - ref: thumbfan_far_thumb
+          shift: [-.5px-5, -.5py-2]
+        - ref: thumbfan_far_thumb
+          shift: [-.5px-5, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px+4, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px+4, -.5py]
+
+        - ref: thumbfan_home_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [.5px-1.5, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-.5px, -.5py]
+
+
+  pcb_board_base:
+    - name : _pcbOutline
+      fillet: 1
+
+  board_base:
+    - name : _all
+      fillet: 0
+
+  wristrests :
+    - what: polygon
+      operation: stack
+      points:
+      #left
+        - ref: matrix_pinky_home
+          shift: [-.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-.5px+10, -.5py-60]
+        - ref: thumbfan_far_thumb
+          shift: [.5px+5, .5py-50]
+        - ref: thumbfan_far_thumb
+          shift: [.5px, -.5py]
+        - ref: matrix_index_home
+          shift: [-.5px, -.5py]
+      expand: 1
+
+  top_plate_board :
+    - name : board_base
+      expand: 4
+      fillet: 1
+
+  top_plate :
+    - name : _key_slot_negative
+    - operation : stack
+      name : top_plate_board
+
+pcbs:
+  keyb_pcb:
+    template: kicad8
+    outlines:
+      - outline : pcb_board_base
+        #layer : Edge.Cuts
+    footprints:
+      choc_hotswap:
+        what: ceoloide/switch_choc_v1_v2
+        where: true
+        params:
+          reversible: false
+          hotswap: true
+          choc_v2_support: false
+          include_corner_marks: true
+          keycap_width: 18
+          keycap_height: 18
+          from: "{{row_net}}"
+          to: "{{column_net}}"
+      diode:
+        what: ceoloide/diode_tht_sod123
+        where: true
+        params:
+          from: "{{column_net}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      microcontroller:
+        what: ceoloide/mcu_nice_nano
+        where:
+          ref: matrix_pinky_home
+          shift: [104,13.7]
+          rotate: -16.75
+      switch:
+        what: ceoloide/power_switch_smd_side
+        where: 
+          ref: matrix_pinky_home
+          shift: [92,33.1]
+          #shift: [0,-52.25]
+          rotate: 73.4
+      batt_plug:
+        what: ceoloide/battery_connector_jst_ph_2
+        where :
+          ref: matrix_pinky_home
+          shift: [104.5,-9]
+          #shift: [-13,-10]
+          rotate: -17-90
+      trrs:
+        what: trrs
+        where :
+          ref: matrix_index_home
+          shift: [0,0]
+          rotate: 0
+        params:
+          A: GND
+          B: P0
+          C: P1
+          D: VCC
+cases:
+  clipin_plate :
+    - what: outline
+      name: top_plate
+      extrude: 1.2
+      rotate: [0,0,0]
+  box :
+    - what: outline
+      name: top_plate
+      extrude : 5.2
+      
+    - operation : subtract
+      name : board_base
+      extrude : 4
+      
+
+
