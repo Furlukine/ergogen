@@ -1,0 +1,265 @@
+meta:
+  engine: 4.1.0
+units:
+  U : 19.05
+  cx : 18
+  cy : 17
+  # Proxy Spacing Variables
+  # MX
+  #kx: U
+  #ky: U
+  # choc
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx + 2
+  py: ky +2
+  #keycaps size
+  keycap_1u_w: 17.5
+  keycap_1u_h: 16.6
+  keycap_15u_w: 27
+  keycap_15u_h: 16.6
+
+  screwSize: 1.5
+  screwsupport: 5
+
+
+
+points:
+  zones:
+    matrix:
+      rotate: 12
+      key:
+        padding: 1ky
+        spread: 1kx
+      anchor:
+        shift: [100, -150]
+      columns:
+        #outter:
+        #  key.spread: ky
+        #  key.column_net: P2
+          # rows.number.skip: true
+        pinky:
+          key.spread: ky
+          key.column_net: P3
+          # key.stagger: -5
+        ring:
+          key.spread: ky
+          key.splay: -8
+          key.stagger: 10
+          key.origin: [0, -7.5]
+          key.column_net: P4
+        middle:
+          key.spread: ky
+          key.splay: -1
+          key.stagger: 6.5
+          key.origin: [0, -9]
+          key.column_net: P5
+        index:
+          key.spread: ky
+          key.splay: -3
+          key.stagger: -8
+          key.origin: [0, -1]
+          key.column_net: P6
+        inner:
+          key.spread: ky
+          key.stagger: -3
+          key.column_net: P7
+      rows:
+        bottom:
+          spread: kx
+          row_net: P21
+        home:
+          spread: kx
+          row_net: P20
+        top:
+          spread: kx
+          row_net: P19
+        #number:
+        #  spread: kx
+        #  row_net: P18
+    thumbfan:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -ky-7]
+      columns:
+        near:
+          key.splay: 0
+          key.origin: [0, 0]
+          key.column_net: P5
+        home:
+          key.spread: 18.5
+          key.splay: -10
+          key.origin: [-9.5, -9]
+          key.column_net: P6
+        far:
+          key.spread: 18.5
+          key.splay: -10
+          key.origin: [-9.5, -9]
+
+          key.column_net: P7
+      rows:
+        thumb:
+          row_net: P15
+
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  keys:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [kx-0.5, ky-0.5]
+  keycaps:
+    - what: rectangle
+      where: true
+      size: [keycap_1u_w, keycap_1u_h]
+  _key_slot_negative:
+    - what: rectangle
+      where: true
+      size: [13.8, 13.8]
+
+  board :
+    - what: polygon
+      operation: stack
+      points:
+
+        - ref: matrix_index_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_middle_bottom
+          shift: [.4px, -.5py]
+        - ref: matrix_middle_bottom
+          shift: [-.4px, -.5py]
+
+
+        - ref: matrix_ring_bottom
+          shift: [.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [.5px, .08py]
+        - ref: matrix_pinky_bottom
+          shift: [.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [.5px-2, -.5py]
+        - ref: matrix_pinky_bottom
+          shift: [-.5px, -.5py]
+        - ref: matrix_pinky_top
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_top
+          shift: [-.5px, .5py]
+        - ref: matrix_pinky_top
+          shift: [.5px+3.75, .5py]
+        - ref: matrix_ring_top
+          shift: [-.5px, .5py]
+        - ref: matrix_ring_top
+          shift: [.5px-1.1, .5py]
+        - ref: matrix_middle_top
+          shift: [-.5px, .5py]
+        - ref: matrix_middle_top
+          shift: [.5px, .5py]
+        - ref: matrix_middle_top
+          shift: [.5px, .5py-7.5]
+        - ref: matrix_index_top
+          shift: [.5px, .5py]
+        - ref: matrix_inner_top
+          shift: [-.5px+2, .5py]
+        - ref: matrix_inner_top
+          shift: [.5px, .5py]
+      #middle
+        - ref: matrix_inner_top
+          shift: [.5px, -.5py]
+        - ref: matrix_inner_top
+          shift: [.5px+19.32, -.5py]
+
+
+        - ref: thumbfan_far_thumb
+          shift: [.5px-5, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px, .5py]
+        - ref: thumbfan_far_thumb
+          shift: [.5px, -.5py]
+        - ref: thumbfan_home_thumb
+          shift: [.5px, -.5py]
+        - ref: thumbfan_home_thumb
+          shift: [-.5px, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-.5px, -.5py]
+        - ref: thumbfan_near_thumb
+          shift: [-.5px, .5py]
+
+
+  board_fillet:
+    - name : board
+      fillet: 1
+
+  top_plate:
+    - name : board
+      fillet: 1
+    - operation: subtract
+      name: keys
+
+
+pcbs:
+  keyb_pcb:
+    template: kicad8
+    outlines:
+      - outline : board_fillet
+        #layer : Edge.Cuts
+    footprints:
+      choc_hotswap:
+        what: ceoloide/switch_choc_v1_v2
+        where: true
+        params:
+          reversible: true
+          hotswap: true
+          choc_v2_support: false
+          include_corner_marks: true
+          keycap_width: 18
+          keycap_height: 17
+          from: "{{row_net}}"
+          to: "{{column_net}}"
+      diode:
+        what: ceoloide/diode_tht_sod123
+        where: false
+        params:
+          from: "{{column_net}}"
+          to: "{{row_net}}"
+          reversible: true
+        adjust:
+          shift: [0, -5]
+      microcontroller:
+        what: ceoloide/mcu_nice_nano
+        where:
+          ref: matrix_inner_home
+          shift: [20,-10]
+          rotate: 0
+        params:
+          reversible: true
+      switch:
+        what: ceoloide/power_switch_smd_side
+        where: 
+          ref: matrix_inner_top
+          shift: [-26,-42.5]
+          rotate: 180
+        params:
+          reversible: true
+      trrs:
+          what: ceoloide/trrs_pj320a
+          where:
+            ref: matrix_inner_top
+            shift: [26.6, -48]
+            rotate: -90
+          params:
+            reversible: true
+      batt_plug:
+        what: ceoloide/battery_connector_jst_ph_2
+        where :
+          ref: matrix_inner_bottom
+          shift: [5,-11]
+          rotate: 90
+        params:
+          reversible: true
+      
