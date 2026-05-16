@@ -45,13 +45,13 @@ points:
           # key.stagger: -5
         ring:
           key.spread: ky
-          key.splay: -8
+          key.splay: -9
           key.stagger: 10
-          key.origin: [0, -7.5]
+          key.origin: [0, -7.8]
           key.column_net: P4
         middle:
           key.spread: ky
-          key.splay: -1
+          key.splay: -2
           key.stagger: 6.5
           key.origin: [0, -9]
           key.column_net: P5
@@ -89,12 +89,12 @@ points:
           key.column_net: P5
         home:
           key.spread: 18.5
-          key.splay: -10
+          key.splay: -12
           key.origin: [-9.5, -9]
           key.column_net: P6
         far:
           key.spread: 18.5
-          key.splay: -10
+          key.splay: -12
           key.origin: [-9.5, -9]
 
           key.column_net: P7
@@ -137,7 +137,7 @@ outlines:
         - ref: matrix_ring_bottom
           shift: [.5px, -.5py]
         - ref: matrix_pinky_bottom
-          shift: [.5px, .08py]
+          shift: [.5px, .09py]
         - ref: matrix_pinky_bottom
           shift: [.5px, -.5py]
         - ref: matrix_pinky_bottom
@@ -151,11 +151,11 @@ outlines:
         - ref: matrix_pinky_top
           shift: [-.5px, .5py]
         - ref: matrix_pinky_top
-          shift: [.5px+3.75, .5py]
+          shift: [.5px+4.4, .5py]
         - ref: matrix_ring_top
           shift: [-.5px, .5py]
         - ref: matrix_ring_top
-          shift: [.5px-1.1, .5py]
+          shift: [.5px-0.4, .5py]
         - ref: matrix_middle_top
           shift: [-.5px, .5py]
         - ref: matrix_middle_top
