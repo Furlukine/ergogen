@@ -28,79 +28,67 @@ units:
 points:
   zones:
     matrix:
-      rotate: 12
+      rotate: 14
       key:
         padding: 1ky
         spread: 1kx
       anchor:
         shift: [100, -150]
       columns:
-        #outter:
-        #  key.spread: ky
-        #  key.column_net: P2
-          # rows.number.skip: true
         pinky:
-          key.spread: ky
-          key.column_net: P3
-          # key.stagger: -5
+          key:
+            spread: ky
         ring:
-          key.spread: ky
-          key.splay: -9
-          key.stagger: 10
-          key.origin: [0, -7.8]
-          key.column_net: P4
+          key:
+            spread: ky
+            splay: -9
+            stagger: 10
+            origin: [0, -7.8]
         middle:
-          key.spread: ky
-          key.splay: -2
-          key.stagger: 6.5
-          key.origin: [0, -9]
-          key.column_net: P5
+          key:
+            spread: ky
+            splay: -2
+            stagger: 6.5
+            origin: [0, -9]
         index:
-          key.spread: ky
-          key.splay: -3
-          key.stagger: -8
-          key.origin: [0, -1]
-          key.column_net: P6
+          key:
+            spread: ky
+            splay: -3
+            stagger: -8
+            origin: [0, -1]
         inner:
-          key.spread: ky
-          key.stagger: -3
-          key.column_net: P7
+          key:
+            spread: ky
+            stagger: -3
       rows:
         bottom:
           spread: kx
-          row_net: P21
         home:
           spread: kx
-          row_net: P20
         top:
           spread: kx
-          row_net: P19
-        #number:
-        #  spread: kx
-        #  row_net: P18
     thumbfan:
       anchor:
         ref: matrix_index_bottom
         shift: [0, -ky-7]
       columns:
-        near:
-          key.splay: 0
-          key.origin: [0, 0]
-          key.column_net: P5
+        inner:
+          key:
+            splay: 0
+            origin: [0, 0]
+            name: keys_thumb_inner
         home:
-          key.spread: 18.5
-          key.splay: -12
-          key.origin: [-9.5, -9]
-          key.column_net: P6
-        far:
-          key.spread: 18.5
-          key.splay: -12
-          key.origin: [-9.5, -9]
-
-          key.column_net: P7
-      rows:
-        thumb:
-          row_net: P15
+          key:
+            spread: 18.5
+            splay: -12
+            origin: [-9.5, -9]
+            name: keys_thumb_home
+        outer:
+          key:
+            spread: 18.5
+            splay: -12
+            origin: [-9.5, -9]
+            name: keys_thumb_outer
 
 outlines:
   raw:
@@ -175,21 +163,20 @@ outlines:
           shift: [.5px+19.32, -.5py]
 
 
-        - ref: thumbfan_far_thumb
+        - ref: keys_thumb_outer
           shift: [.5px-5, .5py]
-        - ref: thumbfan_far_thumb
+        - ref: keys_thumb_outer
           shift: [.5px, .5py]
-        - ref: thumbfan_far_thumb
+        - ref: keys_thumb_outer
           shift: [.5px, -.5py]
-        - ref: thumbfan_home_thumb
+        - ref: keys_thumb_home
           shift: [.5px, -.5py]
-        - ref: thumbfan_home_thumb
+        - ref: keys_thumb_home
           shift: [-.5px, -.5py]
-        - ref: thumbfan_near_thumb
+        - ref: keys_thumb_inner
           shift: [-.5px, -.5py]
-        - ref: thumbfan_near_thumb
+        - ref: keys_thumb_inner
           shift: [-.5px, .5py]
-
 
   board_fillet:
     - name : board
@@ -200,7 +187,6 @@ outlines:
       fillet: 1
     - operation: subtract
       name: keys
-
 
 pcbs:
   keyb_pcb:
@@ -216,20 +202,11 @@ pcbs:
           reversible: true
           hotswap: true
           choc_v2_support: false
-          include_corner_marks: true
+          include_corner_marks: false
           keycap_width: 18
           keycap_height: 17
-          from: "{{row_net}}"
-          to: "{{column_net}}"
-      diode:
-        what: ceoloide/diode_tht_sod123
-        where: false
-        params:
-          from: "{{column_net}}"
-          to: "{{row_net}}"
-          reversible: true
-        adjust:
-          shift: [0, -5]
+          from: "{{name}}"
+          to: GND
       microcontroller:
         what: ceoloide/mcu_nice_nano
         where:
@@ -238,6 +215,31 @@ pcbs:
           rotate: 0
         params:
           reversible: true
+          P4: matrix_pinky_top
+          P18: matrix_pinky_home
+          P10: matrix_pinky_bottom
+
+          P3: matrix_ring_top
+          P5: matrix_ring_home
+          P16: matrix_ring_bottom
+
+          P2: matrix_middle_top
+          P19: matrix_middle_home
+          P14: matrix_middle_bottom
+
+          P0: matrix_index_top
+          P20: matrix_index_home
+          P15: matrix_index_bottom
+
+          P1: matrix_inner_top
+          P21: matrix_inner_home
+          P6: matrix_inner_bottom
+
+          P7: keys_thumb_inner
+          P8: keys_thumb_home
+          P9: keys_thumb_outer
+
+          
       switch:
         what: ceoloide/power_switch_smd_side
         where: 
