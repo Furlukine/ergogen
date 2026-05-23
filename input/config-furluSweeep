@@ -22,7 +22,7 @@ units:
 points:
   zones:
     matrix:
-      rotate: 14
+      rotate: 18
       key:
         padding: 1ky
         spread: 1kx
@@ -35,15 +35,15 @@ points:
         ring:
           key:
             spread: ky
-            splay: -9
-            stagger: 10
-            origin: [0, -7.8]
+            splay: -10
+            stagger: 13
+            origin: [0, -8]
         middle:
           key:
             spread: ky
-            splay: -2
+            splay: -5
             stagger: 6.5
-            origin: [0, -9]
+            origin: [0, -8.6]
         index:
           key:
             spread: ky
@@ -64,7 +64,8 @@ points:
     thumbfan:
       anchor:
         ref: matrix_index_bottom
-        shift: [0, -ky-7]
+        shift: [2, -ky-7.5]
+        rotate: 8
       columns:
         inner:
           key:
@@ -75,13 +76,13 @@ points:
           key:
             spread: 18.5
             splay: -12
-            origin: [-9.5, -9]
+            origin: [-9.5, -4]
             name: keys_thumb_home
         outer:
           key:
             spread: 18.5
-            splay: -12
-            origin: [-9.5, -9]
+            splay: -8
+            origin: [-9.5, -4]
             name: keys_thumb_outer
 
 outlines:
@@ -107,16 +108,10 @@ outlines:
     - what: polygon
       operation: stack
       points:
-        - ref: matrix_index_bottom
-          shift: [-.5px, -.5py]
-        - ref: matrix_middle_bottom
-          shift: [.4px, -.5py]
-        - ref: matrix_middle_bottom
-          shift: [-.4px, -.5py]
+        - ref: keys_thumb_inner
+          shift: [-.5px, .5py+8.6]
         - ref: matrix_ring_bottom
-          shift: [.5px, -.5py]
-        - ref: matrix_pinky_bottom
-          shift: [.5px, .09py]
+          shift: [-.5px+2, -.5py]
         - ref: matrix_pinky_bottom
           shift: [.5px, -.5py]
         - ref: matrix_pinky_bottom
@@ -130,11 +125,11 @@ outlines:
         - ref: matrix_pinky_top
           shift: [-.5px, .5py]
         - ref: matrix_pinky_top
-          shift: [.5px+4.4, .5py]
+          shift: [.5px+4.7, .5py]
         - ref: matrix_ring_top
           shift: [-.5px, .5py]
-        - ref: matrix_ring_top
-          shift: [.5px-0.4, .5py]
+        - ref: matrix_middle_top
+          shift: [-.5px, .5py-7]
         - ref: matrix_middle_top
           shift: [-.5px, .5py]
         - ref: matrix_middle_top
@@ -148,11 +143,11 @@ outlines:
         - ref: matrix_inner_top
           shift: [.5px, .5py]
         - ref: matrix_inner_top
-          shift: [.5px, -.5py]
+          shift: [.5px, .5py-8]
         - ref: matrix_inner_top
-          shift: [.5px+19.32, -.5py]
+          shift: [.5px+19.32, .5py-8]
         - ref: keys_thumb_outer
-          shift: [.5px-5, .5py]
+          shift: [.5px-4.6, .5py]
         - ref: keys_thumb_outer
           shift: [.5px, .5py]
         - ref: keys_thumb_outer
@@ -173,27 +168,28 @@ outlines:
         - ref: matrix_inner_top
           shift: [.5px, .5py]
         - ref: matrix_inner_top
-          shift: [.5px+20, .5py]
+          shift: [.5px+25, .5py]
         - ref: matrix_inner_bottom
-          shift: [.5px+20, -.5py-1.2]
+          shift: [.5px+20, .5py-4.2]
         - ref: matrix_inner_bottom
-          shift: [.5px, -.5py-1.2]
-
-  bottom_plate:
-    - name : board
-      fillet: 1
+          shift: [.5px, .5py-4.2]
 
   _screwHoles:
     - what: circle
       radius: screwSize
       where:
         - ref: matrix_pinky_top
-          shift: [.5px+2, .5py-4]
+          shift: [.5px+1.5, .5py-13]
     - what: circle
       radius: screwSize
       where:
         - ref: matrix_pinky_bottom
           shift: [.5px-0.9, .5py-1]
+    - what: circle
+      radius: screwSize
+      where:
+        - ref: matrix_middle_top
+          shift: [-.5px-0.5, -.5py+1]
     - what: circle
       radius: screwSize
       where:
@@ -203,12 +199,18 @@ outlines:
       radius: screwSize
       where:
         - ref: keys_thumb_inner
-          shift: [-.5px+21, .5py]
+          shift: [-.5px+20.5, .5py]
     - what: circle
       radius: screwSize
       where:
         - ref: keys_thumb_outer
-          shift: [-.5px-1.2, .5py]
+          shift: [-.5px-0.5, .5py]
+
+  bottom_plate:
+    - name : board
+      fillet: 1
+    - operation: subtract
+      name: _screwHoles
 
   top_plate:
     - name: board
@@ -243,7 +245,7 @@ pcbs:
           reversible: true
           hotswap: true
           choc_v2_support: false
-          include_corner_marks: false
+          include_corner_marks: true
           keycap_width: 18
           keycap_height: 17
           from: "{{name}}"
@@ -252,7 +254,7 @@ pcbs:
         what: ceoloide/mcu_nice_nano
         where:
           ref: matrix_inner_home
-          shift: [20,-10]
+          shift: [20,1]
           rotate: 0
         params:
           show_instructions: false
@@ -283,21 +285,19 @@ pcbs:
           P7: keys_thumb_inner
           P8: keys_thumb_home
           P9: keys_thumb_outer
-
-          
       switch:
         what: ceoloide/power_switch_smd_side
         where: 
           ref: matrix_inner_top
-          shift: [-26,-42.5]
-          rotate: 180
+          shift: [-37,-38.4]
+          rotate: -82
         params:
           reversible: true
       #trrs:
       #    what: ceoloide/trrs_pj320a
       #    where:
       #      ref: matrix_inner_top
-      #      shift: [26.6, -48]
+      #      shift: [26.6, -38]
       #      rotate: -90
       #    params:
       #      reversible: true
@@ -305,15 +305,16 @@ pcbs:
         what: ceoloide/battery_connector_jst_ph_2
         where :
           ref: matrix_inner_bottom
-          shift: [5,-11]
+          shift: [13,-5]
           rotate: 90
         params:
           reversible: true
+
       mouting_holes0:
         what: ceoloide/mounting_hole_plated
         where:
           - ref: matrix_pinky_top
-            shift: [.5px+2, .5py-4]
+            shift: [.5px+1.5, .5py-13]
       mouting_holes1:
         what: ceoloide/mounting_hole_plated
         where:
@@ -323,79 +324,33 @@ pcbs:
         what: ceoloide/mounting_hole_plated
         where:
           - ref: keys_thumb_inner
-            shift: [-.5px+21, .5py]
+            shift: [-.5px+20.5, .5py]
       mouting_holes4:
         what: ceoloide/mounting_hole_plated
         where:
           - ref: keys_thumb_outer
-            shift: [-.5px-1.2, .5py]
+            shift: [-.5px-0.5, .5py]
       mouting_holes5:
         what: ceoloide/mounting_hole_plated
         where:
           - ref: matrix_index_top
             shift: [.5px-1.3, -.5py+1]
+      mouting_holes6:
+        what: ceoloide/mounting_hole_plated
+        where:
+          - ref: matrix_middle_top
+            shift: [-.5px-0.5, -.5py+1]
 
   top_plate_pcb:
     template: kicad8
     outlines:
       - outline : top_plate
-    footprints:
-      mouting_holes0:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: matrix_pinky_top
-            shift: [.5px+2, .5py-4]
-      mouting_holes1:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: matrix_pinky_bottom
-            shift: [.5px-0.9, .5py-1]
-      mouting_holes3:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: keys_thumb_inner
-            shift: [-.5px+21, .5py]
-      mouting_holes4:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: keys_thumb_outer
-            shift: [-.5px-1.2, .5py]
-      mouting_holes5:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: matrix_index_top
-            shift: [.5px-1.3, -.5py+1]
+
 
   bottom_plate_pcb:
     template: kicad8
     outlines:
       - outline : bottom_plate
-    footprints:
-      mouting_holes0:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: matrix_pinky_top
-            shift: [.5px+2, .5py-4]
-      mouting_holes1:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: matrix_pinky_bottom
-            shift: [.5px-0.9, .5py-1]
-      mouting_holes3:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: keys_thumb_inner
-            shift: [-.5px+21, .5py]
-      mouting_holes4:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: keys_thumb_outer
-            shift: [-.5px-1.2, .5py]
-      mouting_holes5:
-        what: ceoloide/mounting_hole_plated
-        where:
-          - ref: matrix_index_top
-            shift: [.5px-1.3, -.5py+1]
 
 cases:
   TopPlate:
