@@ -16,7 +16,7 @@ units:
   keycap_15u_w: 27
   keycap_15u_h: 16.6
 
-  screwSize: 1.5
+  screwSize: 1.05
   #screwsupport: 5
 
 points:
@@ -227,25 +227,24 @@ outlines:
       fillet: 1
     - operation: subtract
       name: _key_slot_negative
-    - operation: subtract
-      name: _screwHoles
+
 
 pcbs:
   keyb_pcb:
     template: kicad8
     outlines:
-      - outline : bottom_plate
+      - outline : plate
         #layer : Edge.Cuts
     footprints:
       choc_hotswap:
         what: ceoloide/switch_choc_v1_v2
         where: true
         params:
-          solder: true
+          solder: false
           reversible: true
           hotswap: true
           choc_v2_support: false
-          include_corner_marks: true
+          include_corner_marks: false
           keycap_width: 18
           keycap_height: 17
           from: "{{name}}"
